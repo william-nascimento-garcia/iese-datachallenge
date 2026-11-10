@@ -1,0 +1,21 @@
+# Ingestion metadata entry for Gestor Eventos (same format as the platform example).
+#
+# Load type: DeltaLoad on updated_at.
+#   Rows are updated in place and every update sets updated_at, so a watermark on it captures
+#   new registrations and changes (e.g. cancellations) while reading ~2k of 400k rows a day.
+#   Bronze appends every version received, which keeps history and allows reprocessing.
+
+- task_id: 1310
+  source_system: GESTOR_EVENTOS
+  connector: SqlServer
+  source_settings:
+    schema: dbo
+    table: EVENT_REGISTRATION
+  load:
+    type: DeltaLoad
+    watermark_column: updated_at
+  target:
+    database: "{env}_BRONZE_DTP"
+    schema: GESTOR_EVENTOS
+    table: EVENT_REGISTRATION
+  active: true

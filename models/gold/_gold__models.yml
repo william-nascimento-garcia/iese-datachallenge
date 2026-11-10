@@ -1,0 +1,98 @@
+version: 2
+
+# GOLD: star schema for Power BI. Contracts enforced: column names and types are a promise to
+# Power BI.
+# Personal data only in dim_attendee, tagged PII (meta.pii) -> masked except for Events Marketing.
+
+models:
+  - name: fct_event_registrations
+    description: One row per registration.
+    data_tests:
+      # Reconciliation: no registration lost or duplicated between Silver and Gold.
+      - row_count_matches:
+          arguments:
+            compare_model: ref('stg_gestor_eventos__registrations')
+            compare_expression: "count(*)"
+    columns:
+      - name: registration_id
+        data_type: varchar
+        data_tests: [unique, not_null]
+      - name: event_id
+        data_type: varchar
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_event')
+                field: event_id
+      - name: attendee_key
+        data_type: varchar
+        description: Pseudonymous person key. NULL when the registration has no email.
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_attendee')
+                field: attendee_key
+      - name: registration_status
+        data_type: varchar
+        data_tests: [not_null]
+      - name: is_cancelled
+        data_type: boolean
+        data_tests: [not_null]
+      - name: is_cancelled_but_still_attending
+        data_type: boolean
+        description: Cancelled, but the same person still holds another registration for this event.
+        data_tests: [not_null]
+      - name: registered_at
+        data_type: timestamp_ntz
+        data_tests: [not_null]
+      - name: event_date
+        data_type: date
+        data_tests: [not_null]
+      - name: last_status_change_at
+        data_type: timestamp_ntz
+
+  - name: dim_event
+    description: One row per event, one canonical name.
+    columns:
+      - name: event_id
+        data_type: varchar
+        data_tests: [unique, not_null]
+      - name: event_name
+        data_type: varchar
+        data_tests: [not_null]
+      - name: event_date
+        data_type: date
+        data_tests: [not_null]
+
+  - name: dim_attendee
+    description: >
+      One row per person (with email). The only Gold model with personal data: email and names
+      are masked for every role except PRO__B__ETL and FR_EVENTS_MARKETING. No phone.
+    columns:
+      - name: attendee_key
+        data_type: varchar
+        data_tests: [unique, not_null]
+      - name: attendee_email
+        data_type: varchar
+        config:
+          meta: {pii: email}
+        data_tests: [unique, not_null]
+      - name: first_name
+        data_type: varchar
+        config:
+          meta: {pii: name}
+      - name: last_name
+        data_type: varchar
+        config:
+          meta: {pii: name}
+      - name: company
+        data_type: varchar
+      - name: events_attending
+        data_type: number(10,0)
+        description: Distinct events in which the person is registered or attended.
+        data_tests: [not_null]
+      - name: is_repeat_attendee
+        data_type: boolean
+        description: The person attends more than one event.
+        data_tests: [not_null]

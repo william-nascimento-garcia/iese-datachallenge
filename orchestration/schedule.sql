@@ -1,0 +1,3 @@
+-- Daily at 03:30 Madrid time. The time zone in the expression makes Snowflake follow CET/CEST.
+--
+--   SCHEDULE = 'USING CRON 30 3 * * * Europe/Madrid'

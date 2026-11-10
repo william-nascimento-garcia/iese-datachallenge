@@ -1,0 +1,25 @@
+registration_id,event_id,event_name,event_date,attendee_email,first_name,last_name,phone,company,registration_status,registered_at,updated_at,_LOADED_AT,_BATCH_ID
+R-1001,EV-2026-031,AI for Leaders Breakfast,2026-11-05,ana.puig@acmecorp.com,Ana,Puig,+34 612 345 678,Acme Corp SL,registered,2026-09-14 10:22:00,2026-09-14 10:22:00,2026-10-01 03:31:12,B-0001
+R-1002,EV-2026-031,AI for Leaders Breakfast,2026-11-05, JORDI.SALA@Globex.com ,Jordi,Sala,612345679,Globex,registered,2026-09-14 11:05:00,2026-09-14 11:05:00,2026-10-01 03:31:12,B-0001
+R-1003,EV-2026-031,AI for Leaders Breakfast,2026-11-05,maria.lopez@initech.es,María,López,(+34) 600-111-222,Initech,registered,15/09/2026 09:40,15/09/2026 09:40,2026-10-01 03:31:12,B-0001
+R-1003,EV-2026-031,AI for Leaders Breakfast,2026-11-05,maria.lopez@initech.es,María,López,(+34) 600-111-222,Initech,registered,15/09/2026 09:40,15/09/2026 09:40,2026-10-01 03:31:12,B-0001
+R-1004,EV-2026-031,AI for Leaders Breakfast,2026-11-05,,Pedro,Ruiz,,,registered,2026-09-15 12:01:00,2026-09-15 12:01:00,2026-10-01 03:31:12,B-0001
+R-1005,EV-2026-031,AI for Leaders Breakfast,2026-11-05,tom.devries@umbrella.nl,Tom,de Vries,+31 6 12345678,Umbrella BV,registered,2026-09-16 08:15:00,2026-09-16 08:15:00,2026-10-01 03:31:12,B-0001
+R-1006,EV-2026-031,AI for Leaders Breakfast,2026-11-05,test@iese.edu,TEST,TEST,,IESE,registered,2026-09-16 09:00:00,2026-09-16 09:00:00,2026-10-01 03:31:12,B-0001
+R-1007,EV-2026-034,Family Business Forum,2026-11-19,lucia.ferrer@ferrergrup.com,Lucía,Ferrer,+34 655 000 111,Ferrer Grup,registered,2026-09-20 17:45:00,2026-09-20 17:45:00,2026-10-01 03:31:12,B-0001
+R-1008,EV-2026-034,Family Business Forum ,2026-11-19,ana.puig@acmecorp.com,Ana,Puig,+34 612 345 678,Acme Corp SL,registered,2026-09-21 10:00:00,2026-09-21 10:00:00,2026-10-01 03:31:12,B-0001
+R-1009,EV-2026-034,family business forum,2026-11-19,k.weber@hoffmann.de,Klaus,Weber,+49 151 2345678,Hoffmann GmbH,waitlisted,2026-09-22 14:30:00,2026-09-22 14:30:00,2026-10-01 03:31:12,B-0001
+R-1010,EV-2026-034,Family Business Forum,2026-11-19,s.martin@soylent.fr,Sophie,Martin,+33 6 12 34 56 78,Soylent SA,registered,2026-09-23 09:12:00,2026-09-23 09:12:00,2026-10-01 03:31:12,B-0001
+R-1011,EV-2026-034,Family Business Forum,2026-11-19,JAVIER.ORTIZ@ORTIZ.ES,Javier,Ortiz,699 888 777,Ortiz Hermanos,registered,2026-09-25 16:20:00,2026-09-25 16:20:00,2026-10-01 03:31:12,B-0001
+R-1012,EV-2026-040,Alumni Reunion Barcelona,2026-12-12,ana.puig@acmecorp.com,Ana,Puig,+34 612 345 678,Acme Corp SL,registered,2026-09-28 19:00:00,2026-09-28 19:00:00,2026-10-01 03:31:12,B-0001
+R-1013,EV-2026-040,Alumni Reunion Barcelona,2026-12-12,p.rossi@stark.it,Paolo,Rossi,+39 333 1234567,Stark Italia,registered,2026-09-29 08:05:00,2026-09-29 08:05:00,2026-10-01 03:31:12,B-0001
+R-1014,EV-2026-040,Alumni Reunion Barcelona,2026-12-12,laura.vidal@wayne.com,Laura,Vidal,+34 677 222 333,Wayne Enterprises,registered,2026-09-30 13:44:00,2026-09-30 13:44:00,2026-10-01 03:31:12,B-0001
+R-1005,EV-2026-031,AI for Leaders Breakfast,2026-11-05,tom.devries@umbrella.nl,Tom,de Vries,+31 6 12345678,Umbrella BV,cancelled,2026-09-16 08:15:00,2026-10-02 18:30:00,2026-10-03 03:30:55,B-0002
+R-1009,EV-2026-034,Family Business Forum,2026-11-19,k.weber@hoffmann.de,Klaus,Weber,+49 151 2345678,Hoffmann GmbH,registered,2026-09-22 14:30:00,2026-10-02 09:10:00,2026-10-03 03:30:55,B-0002
+R-1015,EV-2026-040,Alumni Reunion Barcelona,2026-12-12,maria.lopez@initech.es,María,López,(+34) 600-111-222,Initech,registered,2026-10-01 11:11:00,2026-10-01 11:11:00,2026-10-03 03:30:55,B-0002
+R-1016,EV-2026-040,Alumni Reunion Barcelona,2026-12-12,p.rossi@stark.it,Paolo,Rossi,+39 333 1234567,Stark Italia,CANCELLED,2026-10-01 15:00:00,2026-10-02 08:00:00,2026-10-03 03:30:55,B-0002
+R-1017,EV-2026-040,Alumni Reunion Barcelona,2026-12-12,n.jansen@cyberdyne.nl,Nina,Jansen,+31 6 87654321,Cyberdyne,registered,2026-10-02 10:30:00,2026-10-02 10:30:00,2026-10-03 03:30:55,B-0002
+R-1018,EV-2026-041,Data Strategy Masterclass,2026-12-03,laura.vidal@wayne.com,Laura,Vidal,+34 677 222 333,Wayne Enterprises,registered,2026-10-02 12:00:00,2026-10-02 12:00:00,2026-10-03 03:30:55,B-0002
+R-1019,EV-2026-041,Data Strategy Masterclass,2026-12-03,ana.puig@acmecorp.com ,Ana,Puig,+34 612 345 678,Acme Corp SL,registered,2026-10-02 12:05:00,2026-10-02 12:05:00,2026-10-03 03:30:55,B-0002
+R-1020,EV-2026-041,Data Strategy Masterclass,2026-12-03,d.costa@oscorp.pt,Diogo,Costa,+351 912 345 678,Oscorp,registered,2026-10-02 16:40:00,2026-10-02 16:40:00,2026-10-03 03:30:55,B-0002
+R-1014,EV-2026-040,Alumni Reunion Barcelona,2026-12-12,laura.vidal@wayne.com,Laura,Vidal,+34 677 222 333,Wayne Enterprises,registered,2026-09-30 13:44:00,2026-09-30 13:44:00,2026-10-03 03:30:55,B-0002

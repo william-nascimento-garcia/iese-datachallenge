@@ -1,0 +1,38 @@
+name: iese_events
+version: "1.0.0"
+config-version: 2
+
+profile: iese_dtp
+
+vars:
+  # Test registrations created in the tool (e.g. R-1006 test@iese.edu / TEST TEST).
+  # Written on the RAW Bronze columns; used by the Silver model and its reconciliation test.
+  test_record_condition: >-
+    coalesce(lower(trim(attendee_email)) like 'test@%'
+    or (upper(trim(first_name)) = 'TEST' and upper(trim(last_name)) = 'TEST'), false)
+
+# target.name = environment: dev | pre | pro.
+# Each layer is a database per environment: {ENV}_BRONZE_DTP / {ENV}_SILVER_DTP / {ENV}_GOLD_DTP.
+
+models:
+  iese_events:
+    silver:
+      +database: "{{ target.name | upper }}_SILVER_DTP"
+      +schema: gestor_eventos
+      +post-hook: ["{{ apply_pii_tags() }}"]   # tags the columns marked meta.pii -> masked
+
+    gold:
+      +database: "{{ target.name | upper }}_GOLD_DTP"
+      +schema: events
+      +materialized: table
+      +contract:
+        enforced: true
+      +post-hook: ["{{ apply_pii_tags() }}"]   # dim_attendee: email and names
+      +grants:
+        select: ["FR_EVENTS_MARKETING", "ANALYST"]   # Power BI / analysts; PII masked by the tag policy
+
+data_tests:
+  iese_events:
+    +severity: error      # Silver and Gold: a failing test stops the build
+    bronze:
+      +severity: warn     # Bronze only reports; Silver handles the problems

@@ -1,0 +1,15 @@
+# Python virtual environment
+py_dt_in/
+
+# dbt
+target/
+dbt_packages/
+logs/
+profiles.yml
+
+# Case brief (not ours to publish)
+*.docx
+
+# Secrets
+.env
+*.p8

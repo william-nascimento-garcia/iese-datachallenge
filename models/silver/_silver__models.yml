@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: stg_gestor_eventos__registrations
+    description: One clean, typed row per registration (latest version). Test registrations removed.
+    # Contract enforced (config in the model): names and types below are guaranteed.
+    data_tests:
+      # Reconciliation: every distinct real (non-test) registration in Bronze reaches Silver exactly once.
+      - row_count_matches:
+          arguments:
+            compare_model: source('gestor_eventos', 'event_registration')
+            compare_expression: "count(distinct case when not ({{ var('test_record_condition') }}) then trim(registration_id) end)"
+    columns:
+      - name: registration_id
+        data_type: varchar
+        data_tests: [unique, not_null]
+      - name: event_id
+        data_type: varchar
+        data_tests: [not_null]
+      - name: event_name
+        data_type: varchar
+      - name: event_date
+        data_type: date
+        data_tests:
+          - not_null
+          - single_value_per_key:
+              arguments:
+                key: event_id
+              config:
+                severity: warn   # e.g. a rescheduled event: dim_event keeps the latest date
+      - name: attendee_key
+        data_type: varchar
+        description: Pseudonymous person key (keyed hash of the email). NULL when there is no email.
+      - name: attendee_email
+        data_type: varchar
+        config:
+          meta: {pii: email}
+        data_tests: [not_masked]   # dbt must run as the ETL role, which sees real emails
+      - name: first_name
+        data_type: varchar
+        config:
+          meta: {pii: name}
+      - name: last_name
+        data_type: varchar
+        config:
+          meta: {pii: name}
+      - name: company
+        data_type: varchar
+      - name: registration_status
+        data_type: varchar
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['registered', 'waitlisted', 'cancelled', 'attended']
+              config:
+                severity: warn   # a new status in the tool should alert, not stop the load
+      - name: registered_at
+        data_type: timestamp_ntz
+        data_tests: [not_null]   # fails if a new date format appears
+      - name: updated_at
+        data_type: timestamp_ntz
+        data_tests:
+          - not_null
+          - not_before:
+              arguments:
+                column: registered_at
+      - name: _loaded_at
+        data_type: timestamp_ntz
